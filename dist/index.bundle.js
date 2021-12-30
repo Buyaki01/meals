@@ -110,13 +110,23 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 
 /***/ }),
 
+/***/ "./src/apiRequest.js":
+/*!***************************!*\
+  !*** ./src/apiRequest.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"getMeals\": () => (/* binding */ getMeals)\n/* harmony export */ });\nconst requestURL = 'https://www.themealdb.com/api/json/v1/1/categories.php';\nconst getMeals = async () => {\n  const data = await fetch(requestURL);\n  const response = await data.json();\n  return response.categories;  \n};\n\n\n\n//# sourceURL=webpack://meals/./src/apiRequest.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\n\n// function foodPopUp(){\n\n// }\n// const foodDetails = document.querySelectorAll('.foodContent')\n// foodDetails.forEach((item)=> {\n//     item.addEventListener('click', () => {\n\n//         //popUpComment\n//     } );\n// })\n\n\n\n//# sourceURL=webpack://meals/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _apiRequest_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./apiRequest.js */ \"./src/apiRequest.js\");\n\n\n\nconst foodsBody= document.querySelector('.foods');\n// const foodDetails = document.querySelectorAll('.foodContent');\n// function foodPopUp(){\n\n// }\n// foodDetails.forEach((item)=> {\n//     item.addEventListener('click', () => {\n\n//         //popUpComment\n//     } );\n// })\nasync function getItems(){\n  const mealsData = await (0,_apiRequest_js__WEBPACK_IMPORTED_MODULE_1__.getMeals)();\n  console.log(mealsData);\n  mealsData.forEach((item) => {\n    let foodDetails= document.createElement('div');\n    foodDetails.className = 'col-4 foodContent';    \n    const onClickMeal = document.createElement('a');\n    const mealImage = document.createElement('img');\n    const mealTitle = document.createElement('h5');\n    const mealDescription = document.createElement('p');\n    onClickMeal.href=\"./foodRecipe.html\";\n    mealImage.src='https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg'\n    mealTitle.innerHTML = ``;\n    mealDescription.innerHTML = ``;\n    onClickMeal.appendChild(mealImage);\n    onClickMeal.appendChild(mealTitle);\n    foodDetails.appendChild(onClickMeal);\n    foodDetails.appendChild(mealDescription);\n    foodsBody.appendChild(foodDetails);\n  })\n}\ngetItems();\n\n\n//# sourceURL=webpack://meals/./src/index.js?");
 
 /***/ })
 
