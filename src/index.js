@@ -11,11 +11,11 @@ async function getItems(){
     console.log(item);
     let foodDetails= document.createElement('div');
     foodDetails.className = 'col-4 foodContent';    
-    const onClickMeal = document.createElement('a');
+    const onClickMeal = document.createElement('div');
     const mealImage = document.createElement('img');
     const mealTitle = document.createElement('h5');
     const mealDescription = document.createElement('p');
-    onClickMeal.href="./foodRecipe.html";
+    // onClickMeal.addEventListener()
     mealImage.src=itemImage;
     mealTitle.innerHTML = itemTitle;
     mealDescription.innerHTML = itemDescription;
