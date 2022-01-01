@@ -14,10 +14,6 @@ module.exports = {
         template: './src/index.html',
         filename: 'index.html',
        }),
-       new HtmlWebpackPlugin({
-        template: './src/foodRecipe.html',
-        filename: 'foodRecipe.html',
-       }),
    ],
    output: {
       filename: '[name].bundle.js',
