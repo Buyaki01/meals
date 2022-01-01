@@ -1,8 +1,8 @@
-const requestURL = 'https://www.themealdb.com/api/json/v1/1/categories.php';
-const getMeals = async () => {
-  const data = await fetch(requestURL);
-  const response = await data.json();
-  return response.categories;  
-};
+const requestMealsUrl = 'https://www.themealdb.com/api/json/v1/1/filter.php?i='
 
-export {getMeals};
+const getMealsFromApi = async () => {
+  const data = await fetch(requestMealsUrl);
+  const response = await data.json();
+  return response.meals;  
+};
+export {getMealsFromApi};
