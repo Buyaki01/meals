@@ -1,9 +1,10 @@
 import './style.css';
-import { getMealsFromApi, getRecipeFromApi } from './apiRequest.js';
+import { getMealsFromApi, getRecipeFromApi, getsearchByNameFromApi } from './apiRequest.js';
 
 const foodsBody = document.querySelector('.foods');
 const popUpC = document.querySelector('.popUpContent');
 const popUpMealsSect = document.querySelector('.popUpmealsSection');
+const searchButton = document.querySelector('.searchBtn');
 
 async function popUp(item) {
   const recipe = await getRecipeFromApi(item.idMeal);
@@ -12,9 +13,8 @@ async function popUp(item) {
   const procedure = await recipe.strInstructions;
   const popUpImageSection = document.createElement('div');
   const popUpMeals = document.createElement('div');
-  // popUpMeals.innerHTML = '';
   popUpMealsSect.innerHTML = '';
-  popUpImageSection.className = 'imagePopUp ml-4 mr-4';
+  popUpImageSection.className = 'imagePopUp mt-4 ml-4 mr-4';
   popUpMeals.className = 'mealsPopUp ml-4 mr-4';
   const popUpImage = document.createElement('img');
   const popUpTitle = document.createElement('h3');
@@ -30,18 +30,18 @@ async function popUp(item) {
   popUpC.appendChild(popUpMealsSect);
 }
 
-async function getMeals() {
-  const mealsData = await getMealsFromApi();
+async function getMeals(mealsData) {
+  foodsBody.innerHTML = '';
   mealsData.forEach((item) => {
     const itemImage = item.strMealThumb;
     const itemTitle = item.strMeal;
     const foodDetails = document.createElement('div');
-    foodDetails.className = 'col-4 foodContent';
+    foodDetails.className = 'col-4 foodContent mt-2';
     const onClickMeal = document.createElement('div');
     const mealImage = document.createElement('img');
     const mealTitle = document.createElement('h5');
     const seeRecipe = document.createElement('button');
-    seeRecipe.className = 'btn btn-info btn-lg mb-2';
+    seeRecipe.className = 'btn btn-info';
     seeRecipe.dataset.toggle = 'modal';
     seeRecipe.dataset.target = '#myModal';
     onClickMeal.addEventListener('click', () => {
@@ -57,4 +57,17 @@ async function getMeals() {
     foodsBody.appendChild(foodDetails);
   });
 }
-getMeals();
+
+searchButton.addEventListener('click', async (e) => {
+  e.preventDefault();
+  const inputElement = document.querySelector('.enteredValue');
+  const inputValue = inputElement.value;
+  const searchedMeal = await getsearchByNameFromApi(inputValue);
+  getMeals(searchedMeal);
+});
+
+async function loadPage() {
+  const mealsData = await getMealsFromApi();
+  getMeals(mealsData);
+}
+loadPage();

@@ -1,3 +1,11 @@
 img {
   max-width: 100%;
 }
+
+.modal-header {
+  order: -1;
+}
+
+.popUpmealsSection {
+  order: -1;
+}
