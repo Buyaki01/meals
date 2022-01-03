@@ -1,6 +1,7 @@
 const requestMealsUrl = 'https://www.themealdb.com/api/json/v1/1/filter.php?i=';
 const requestRecipeUrl = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=';
 const searchByNameUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+const searchByCategoryUrl = 'https://www.themealdb.com/api/json/v1/1/filter.php?c=';
 
 const getMealsFromApi = async () => {
   const data = await fetch(requestMealsUrl);
@@ -20,4 +21,12 @@ const getsearchByNameFromApi = async (name) => {
   return response.meals;
 };
 
-export { getMealsFromApi, getRecipeFromApi, getsearchByNameFromApi };
+const getsearchByCategoryFromApi = async (category) => {
+  const data = await fetch(`${searchByCategoryUrl}${category}`);
+  const response = await data.json();
+  return response.meals;
+};
+
+export {
+  getMealsFromApi, getRecipeFromApi, getsearchByNameFromApi, getsearchByCategoryFromApi,
+};

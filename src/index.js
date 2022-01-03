@@ -1,5 +1,7 @@
 import './style.css';
-import { getMealsFromApi, getRecipeFromApi, getsearchByNameFromApi } from './apiRequest.js';
+import {
+  getMealsFromApi, getRecipeFromApi, getsearchByNameFromApi, getsearchByCategoryFromApi,
+} from './apiRequest.js';
 
 const foodsBody = document.querySelector('.foods');
 const popUpC = document.querySelector('.popUpContent');
@@ -63,7 +65,9 @@ searchButton.addEventListener('click', async (e) => {
   const inputElement = document.querySelector('.enteredValue');
   const inputValue = inputElement.value;
   const searchedMeal = await getsearchByNameFromApi(inputValue);
+  const searchedMealCategory = await getsearchByCategoryFromApi(inputValue);
   getMeals(searchedMeal);
+  getMeals(searchedMealCategory);
 });
 
 async function loadPage() {
