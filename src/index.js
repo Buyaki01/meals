@@ -32,25 +32,15 @@ async function popUp(item) {
   popUpC.appendChild(popUpMealsSect);
 }
 
-function searchErrorMessage(){
+function searchErrorMessage() {
   const errorInfo = document.createElement('h3');
-  errorInfo.innerHTML = `Sorry, meal not found! Please try again`
+  errorInfo.innerHTML = 'Sorry, meal not found! Please try again';
   foodsBody.appendChild(errorInfo);
 }
 
-searchButton.addEventListener('click', async (e) => {
-  e.preventDefault();
-  const inputElement = document.querySelector('.enteredValue');
-  const inputValue = inputElement.value;
-  const searchedMeal = await getsearchByNameFromApi(inputValue);
-  const searchedMealCategory = await getsearchByCategoryFromApi(inputValue);
-  getMeals(searchedMeal);
-  getMeals(searchedMealCategory);
-});
-
 async function getMeals(mealsData) {
   foodsBody.innerHTML = '';
-  if(!mealsData){
+  if (!mealsData) {
     searchErrorMessage();
     return;
   }
@@ -79,6 +69,16 @@ async function getMeals(mealsData) {
     foodsBody.appendChild(foodDetails);
   });
 }
+
+searchButton.addEventListener('click', async (e) => {
+  e.preventDefault();
+  const inputElement = document.querySelector('.enteredValue');
+  const inputValue = inputElement.value;
+  const searchedMeal = await getsearchByNameFromApi(inputValue);
+  const searchedMealCategory = await getsearchByCategoryFromApi(inputValue);
+  getMeals(searchedMeal);
+  getMeals(searchedMealCategory);
+});
 
 async function loadPage() {
   const mealsData = await getMealsFromApi();
