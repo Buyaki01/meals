@@ -3,25 +3,31 @@ import { getMealsFromApi, getRecipeFromApi } from './apiRequest.js';
 
 const foodsBody = document.querySelector('.foods');
 const popUpC = document.querySelector('.popUpContent');
+const popUpMealsSect = document.querySelector('.popUpmealsSection');
 
 async function popUp(item) {
   const recipe = await getRecipeFromApi(item.idMeal);
   const itemImage = item.strMealThumb;
   const itemTitle = item.strMeal;
   const procedure = await recipe.strInstructions;
+  const popUpImageSection = document.createElement('div');
   const popUpMeals = document.createElement('div');
-  popUpMeals.innerHTML = '';
-  popUpMeals.className = 'mealsPopUp';
+  // popUpMeals.innerHTML = '';
+  popUpMealsSect.innerHTML = '';
+  popUpImageSection.className = 'imagePopUp ml-4 mr-4';
+  popUpMeals.className = 'mealsPopUp ml-4 mr-4';
   const popUpImage = document.createElement('img');
   const popUpTitle = document.createElement('h3');
   const popUpRecipe = document.createElement('p');
   popUpImage.src = itemImage;
   popUpTitle.innerHTML = itemTitle;
   popUpRecipe.innerHTML = procedure;
-  popUpMeals.appendChild(popUpImage);
+  popUpImageSection.appendChild(popUpImage);
   popUpMeals.appendChild(popUpTitle);
   popUpMeals.appendChild(popUpRecipe);
-  popUpC.appendChild(popUpMeals);
+  popUpMealsSect.appendChild(popUpImageSection);
+  popUpMealsSect.appendChild(popUpMeals);
+  popUpC.appendChild(popUpMealsSect);
 }
 
 async function getMeals() {
