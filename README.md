@@ -23,14 +23,6 @@
 - Linkedin: [Ritta Buyaki](https://www.linkedin.com/in/ritta-sweta/)
 - Twitter: [ @BuyakiRitta](https://twitter.com/BuyakiRitta)
 
-## Getting Started
-
-### Prerequisites:
-
-- Web browser
-- Code Editor
-- Live Server Extension
-
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
@@ -38,9 +30,8 @@ Contributions, issues, and feature requests are welcome!
 Start by:
 
 - Forking the project
-- Cloning the project to your local machine
-- cd into the Youtube-Replica project directory
-- Run git checkout -b your-branch-name
+- Cloning the project: git clone https://github.com/Buyaki01/meals
+- cd meals
 - Make your contributions
 - Push your branch up to your forked repository
 - Open a Pull Request with a detailed description to the development branch of the original project for a review
